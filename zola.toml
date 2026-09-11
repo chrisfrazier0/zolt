@@ -33,7 +33,7 @@ bottom_footnotes = true
 theme = "catppuccin-mocha"
 
 [extra]
-zolt_version = "0.1.0"
+zolt_version = "1.0.0"
 
 [extra.social]
 image = "img/og-default.png"

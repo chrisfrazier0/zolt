@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+Allow: /
+Sitemap: https://lab.frazier.software/zolt/sitemap.xml

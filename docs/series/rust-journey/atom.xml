@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>zolt - Rust Journey</title>
+    <subtitle>An opinionated Zola skeleton for starting new sites faster.</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://lab.frazier.software/zolt/series/rust-journey/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://lab.frazier.software/zolt"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-06-15T00:00:00+00:00</updated>
+    <id>https://lab.frazier.software/zolt/series/rust-journey/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Rust Async Deep Dive</title>
+        <published>2024-09-01T00:00:00+00:00</published>
+        <updated>2025-06-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>zolt</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://lab.frazier.software/zolt/article/rust-async-deep-dive/"/>
+        <id>https://lab.frazier.software/zolt/article/rust-async-deep-dive/</id>
+        
+        <summary type="html">&lt;p&gt;The final chapter of the journey: asynchronous programming.&lt;/p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Advanced Rust Traits</title>
+        <published>2023-08-20T00:00:00+00:00</published>
+        <updated>2023-08-20T00:00:00+00:00</updated>
+        
+        <author>
+          <name>zolt</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://lab.frazier.software/zolt/article/advanced-rust-traits/"/>
+        <id>https://lab.frazier.software/zolt/article/advanced-rust-traits/</id>
+        
+        <summary type="html">&lt;p&gt;Traits are Rust&#39;s answer to shared behaviour. This post explores generic bounds
+and dynamic dispatch.&lt;/p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Getting Started with Rust</title>
+        <published>2023-05-12T00:00:00+00:00</published>
+        <updated>2023-05-12T00:00:00+00:00</updated>
+        
+        <author>
+          <name>zolt</name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://lab.frazier.software/zolt/article/getting-started-with-rust/"/>
+        <id>https://lab.frazier.software/zolt/article/getting-started-with-rust/</id>
+        
+        <summary type="html">&lt;p&gt;Rust is a systems programming language focused on safety and performance 🦀. In this
+first post of the series we set up a toolchain and write our very first program.&lt;/p&gt;</summary>
+        
+    </entry>
+</feed>

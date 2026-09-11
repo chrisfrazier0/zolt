@@ -29,7 +29,7 @@ minify-js:
     find public/js -name '*.js' -type f -exec sh -c 'npx --yes esbuild "$1" --minify --outfile="$1.min" && mv "$1.min" "$1"' _ {} \;
 
 # Full production build: Zola build plus post-build minification.
-build: check fmt-check zola-build minify-js
+build: check fmt-check clean zola-build minify-js
 
 # Remove the build output.
 clean:
