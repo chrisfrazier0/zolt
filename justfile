@@ -4,23 +4,34 @@
 default:
     @just --list
 
-# Validate the site without rendering.
-check:
-    zola check
+# Run all checks.
+check: zola-check fmt-check
 
-# Format JS and the README in place via npx.
-fmt:
-    npx --yes prettier --write --print-width 100 'static/js/**/*.js' README.md
+# Validate the site without rendering.
+zola-check:
+    zola check
 
 # Verify formatting without writing.
 fmt-check:
-    npx --yes prettier --check --print-width 100 'static/js/**/*.js' README.md
+    npx --yes prettier --check --print-width 100 'static/js/**/*.js'
+
+# Format JS in place via npx.
+fmt:
+    npx --yes prettier --write --print-width 100 'static/js/**/*.js'
 
 # Serve the site locally with live reload.
 serve:
     zola serve
 
-# Build the site into public/.
+# Full production build: Zola build plus post-build steps.
+build: check clean zola-build minify-js
+
+# Build the GitHub Pages demo.
+build-pages: build patch-badge
+    rm -rf docs
+    mv public docs
+
+# Build the site into using zola build.
 zola-build:
     zola build
 
@@ -28,8 +39,9 @@ zola-build:
 minify-js:
     find public/js -name '*.js' -type f -exec sh -c 'npx --yes esbuild "$1" --minify --outfile="$1.min" && mv "$1.min" "$1"' _ {} \;
 
-# Full production build: Zola build plus post-build minification.
-build: check fmt-check clean zola-build minify-js
+# Inject the GitHub corner badge into the built HTML.
+patch-badge:
+    node scripts/patch-badge.mjs public
 
 # Remove the build output.
 clean:
