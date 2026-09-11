@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found &middot; {{ config.title }}{% endblock title %}
+
+{% block content %}
+<section class="not-found">
+  <p class="not-found__code">404</p>
+  <h1 class="not-found__title">Page not found</h1>
+  <p class="not-found__message">The page you were looking for doesn&rsquo;t exist or may have moved.</p>
+  <nav class="not-found__actions" aria-label="Recovery">
+    <a href="{{ get_url(path='@/_index.md') }}">Back to home</a>
+    <a href="{{ get_url(path='@/search/_index.md') }}">Search the site</a>
+  </nav>
+</section>
+{% endblock content %}

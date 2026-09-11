@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}{% set node = page | default(value=section) %}{{ node.title }} &middot; {{ config.title }}{% endblock title %}
+
+{% block content %}
+{% set node = page | default(value=section) %}
+<article class="page">
+  <h1>{{ node.title }}</h1>
+  <div class="content">{{ node.content | safe }}</div>
+</article>
+{% endblock content %}

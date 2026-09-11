@@ -1,0 +1,72 @@
+{# Open Graph + Twitter Card tags for social sharing. Included from base.html so
+   every page emits them. Values fall back sensibly:
+
+     title       -> [extra].social_title, else the page/section title, else the
+                    taxonomy term name, else config.title
+     description -> [extra].social_description, else description, else
+                    config.description
+     image       -> [extra].social_image, else config.extra.social.image
+                    (relative paths are resolved against base_url; full http(s)
+                    URLs are used as-is)
+     type        -> [extra].og_type, else "article" for dated pages, else "website"
+
+   Site-wide defaults live in config.extra.social
+#}
+
+{%- set og_title = page?.extra?.social_title
+    or section?.extra?.social_title
+    or page?.title
+    or section?.title
+    or term?.name
+    or config.title -%}
+
+{%- set og_desc = page?.extra?.social_description
+    or section?.extra?.social_description
+    or page?.description
+    or section?.description
+    or config.description -%}
+
+{%- set og_url = current_url or config.base_url -%}
+{%- set og_locale = lang | default(value=config.default_language) -%}
+
+{%- set img_src = page?.extra?.social_image
+    or section?.extra?.social_image
+    or config.extra?.social?.image -%}
+{%- set_global og_image = "" -%}
+{%- if img_src -%}
+  {# A full URL contains "://"; anything else is a site-relative path. #}
+  {%- if img_src | split(pat="://") | length > 1 -%}
+    {%- set_global og_image = img_src -%}
+  {%- else -%}
+    {%- set_global og_image = get_url(path=img_src) -%}
+  {%- endif -%}
+{%- endif -%}
+{%- set og_image_alt = page?.extra?.social_image_alt
+    or section?.extra?.social_image_alt
+    or og_title -%}
+
+{%- set_global og_type = "website" -%}
+{%- if page?.extra?.og_type -%}{%- set_global og_type = page.extra.og_type -%}
+{%- elif page?.date -%}{%- set_global og_type = "article" -%}{%- endif -%}
+
+{%- set tw_site = config.extra?.social?.twitter -%}
+{%- set tw_creator = page?.extra?.social_author or config.extra?.social?.twitter -%}
+
+<meta property="og:site_name" content="{{ config.title }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:title" content="{{ og_title }}">
+<meta property="og:description" content="{{ og_desc }}">
+<meta property="og:url" content="{{ og_url }}">
+<meta property="og:locale" content="{{ og_locale }}">
+{% if og_image %}<meta property="og:image" content="{{ og_image }}">
+<meta property="og:image:alt" content="{{ og_image_alt }}">{% endif %}
+{% if og_type == "article" and page?.date %}<meta property="article:published_time" content="{{ page.date | date(format='%Y-%m-%dT%H:%M:%SZ') }}">{% endif %}
+{% if og_type == "article" and page?.updated %}<meta property="article:modified_time" content="{{ page.updated | date(format='%Y-%m-%dT%H:%M:%SZ') }}">{% endif %}
+
+<meta name="twitter:card" content="{% if og_image %}summary_large_image{% else %}summary{% endif %}">
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:description" content="{{ og_desc }}">
+{% if og_image %}<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:image:alt" content="{{ og_image_alt }}">{% endif %}
+{% if tw_site %}<meta name="twitter:site" content="{{ tw_site }}">{% endif %}
+{% if tw_creator %}<meta name="twitter:creator" content="{{ tw_creator }}">{% endif %}

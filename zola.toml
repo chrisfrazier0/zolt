@@ -1,16 +1,40 @@
-# The URL the site will be built for
-base_url = "https://example.com"
+base_url = "https://lab.frazier.software/zolt"
+default_language = "en"
+hard_link_static = true
 
-# Whether to automatically compile all Sass files in the sass directory
+title = "zolt"
+description = "An opinionated Zola skeleton for starting new sites faster."
+author = "zolt"
+
 compile_sass = true
-
-# Whether to build a search index to be used later on by a JavaScript library
+minify_html = true
 build_search_index = true
 
+generate_feeds = true
+feed_filenames = ["atom.xml", "rss.xml"]
+
+taxonomies = [
+    { name = "tags", paginate_by = 3 },
+    { name = "series", feed = true },
+    { name = "location", paginate_by = 3 },
+]
+
+[search]
+include_date = true
+
 [markdown]
+lazy_async_image = true
+insert_anchor_links = "heading"
+render_emoji = true
+github_alerts = true
+bottom_footnotes = true
 
 [markdown.highlighting]
 theme = "catppuccin-mocha"
 
 [extra]
-# Put all your custom variables here
+zolt_version = "0.1.0"
+
+[extra.social]
+image = "img/og-default.png"
+twitter = "@zolt"

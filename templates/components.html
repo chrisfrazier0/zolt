@@ -1,0 +1,4 @@
+{# KaTeX math.
+   Block:  {% <katex block={true}> %}\int_a^b f(x)\,dx{% </katex> %}
+   Inline: {% <katex> %}e^{i\pi} + 1 = 0{% </katex> %} #}
+{% component katex(block=false) %}{% if block %}<div class="math math--block">$${{ body | trim }}$$</div>{% else %}<span class="math math--inline">${{ body | trim }}$</span>{% endif %}{% endcomponent katex %}

@@ -1,0 +1,24 @@
+{# Renders metadata for a post. Expects `page` in the context. #}
+<div class="post-meta">
+  {% if page.date %}
+  <time class="post-date" datetime="{{ page.date }}">{{ page.date | date(format="%b %d, %Y") }}</time>
+  {% endif %}
+  {% if page.updated and page.updated != page.date %}
+  <time class="post-updated" datetime="{{ page.updated }}">Updated {{ page.updated | date(format="%b %d, %Y") }}</time>
+  {% endif %}
+  {% if page.taxonomies.series %}
+    {% set s = page.taxonomies.series[0] %}
+    <span class="post-series">in <a href="{{ get_taxonomy_url(kind='series', term=s) }}">{{ s }}</a></span>
+  {% endif %}
+  {% if page.taxonomies.location %}
+    {% set loc = page.taxonomies.location[0] %}
+    <span class="post-location">at <a href="{{ get_taxonomy_url(kind='location', term=loc) }}">{{ loc }}</a></span>
+  {% endif %}
+  {% if page.taxonomies.tags %}
+  <ul class="post-tags">
+    {% for t in page.taxonomies.tags %}
+    <li><a href="{{ get_taxonomy_url(kind='tags', term=t) }}">#{{ t }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>

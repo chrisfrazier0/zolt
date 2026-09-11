@@ -1,0 +1,11 @@
+{% set target = redirect_to | default(value=get_url(path='@/_index.md')) %}
+<!DOCTYPE html>
+<html lang="{{ config.default_language }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta http-equiv="refresh" content="0; url={{ target }}">
+  <link rel="canonical" href="{{ target }}">
+</head>
+<body></body>
+</html>

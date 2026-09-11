@@ -1,0 +1,26 @@
+{# A single item in a feed/listing. Expects `page` in the context. #}
+{% set kind = page.components | first %}
+<article class="post-card post-card--{{ kind }}">
+  <header class="post-card__header">
+    <h2 class="post-card__title"><a href="{{ page.permalink }}">{{ page.title }}</a></h2>
+    {% include "partials/post_meta.html" %}
+  </header>
+
+  {% if kind == "gallery" %}
+  <div class="post-card__preview gallery-preview">
+    {% for img in page.extra.images[:3] %}
+    <img src="{{ get_url(path='@/' ~ page.colocated_path ~ img.src) }}" alt="{{ img.alt }}" loading="lazy" decoding="async">
+    {% endfor %}
+    {% if (page.extra.images | length) > 3 %}
+    <span class="gallery-preview__more">+{{ (page.extra.images | length) - 3 }}</span>
+    {% endif %}
+  </div>
+  <a class="post-card__more" href="{{ page.permalink }}">View gallery ({{ page.extra.images | length }} photos) &rarr;</a>
+  {% else %}
+  {% if page.extra.hero_image %}
+  <img class="post-card__hero" src="{{ get_url(path=page.extra.hero_image) }}" alt="{{ page.extra.hero_alt or '' }}" loading="lazy" decoding="async">
+  {% endif %}
+  <div class="post-card__summary">{{ (page.summary or page.description or "") | safe }}</div>
+  <a class="post-card__more" href="{{ page.permalink }}">Read article &rarr;</a>
+  {% endif %}
+</article>

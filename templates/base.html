@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="{{ lang | default(value=config.default_language) }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  {% if current_url %}<link rel="canonical" href="{{ current_url }}">{% endif %}
+
+  {# Content Security Policy. A meta CSP can't use frame-ancestors or sandbox
+     (those require a real HTTP header), but it does constrain scripts, styles,
+     and connections. It allows self plus the jsDelivr CDN used for KaTeX;
+     'unsafe-inline' covers the small inline head scripts and KaTeX's styles. #}
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+  <meta name="generator" content="based on zolt v{{ config.extra.zolt_version }} by Chris Frazier https://github.com/chrisfrazier0/zolt">
+  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+  {% block description %}
+  {% set desc = page?.description or section?.description or config.description %}
+  <meta name="description" content="{{ desc }}">
+  {% endblock description %}
+
+  {# Open Graph + Twitter Card tags for social sharing. #}
+  {% include "partials/social_meta.html" %}
+
+  {# Favicons / app icons (generated from static/img/zolt.png). #}
+  <link rel="icon" href="{{ get_url(path='favicon.ico') }}" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ get_url(path='favicon-32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ get_url(path='favicon-16x16.png') }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ get_url(path='apple-touch-icon.png') }}">
+  <link rel="manifest" href="{{ get_url(path='site.webmanifest') }}">
+
+  <link rel="stylesheet" href="{{ get_url(path='main.css') }}">
+
+  {# KaTeX for math rendering. #}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+    integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+    integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+
+  {# Analytics / third-party snippets. #}
+  {% include "partials/analytics.html" %}
+
+  {% block head %}{% endblock head %}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="site-title" href="{{ get_url(path='@/_index.md') }}">
+      <img class="site-logo" src="{{ get_url(path='img/zolt.png') }}" alt="zolt" width="88" height="88">
+      {{ config.title }}
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      {% set here = current_url | default(value="") %}
+      {% set home_url = get_url(path='@/_index.md') %}
+      {% set about_url = get_url(path='@/about/_index.md') %}
+      {% set search_url = get_url(path='@/search/_index.md') %}
+      <a href="{{ home_url }}"{% if here == home_url %} aria-current="page"{% endif %}>Home</a>
+      <a href="{{ about_url }}"{% if here == about_url %} aria-current="page"{% endif %}>About</a>
+      <a href="{{ search_url }}"{% if here == search_url %} aria-current="page"{% endif %}>Search</a>
+    </nav>
+  </header>
+
+  <main id="main" class="site-main">
+    {% block content %}{% endblock content %}
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; {{ now() | date(format="%Y") }} {{ config.title }}</p>
+  </footer>
+</body>
+</html>

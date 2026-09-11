@@ -1,0 +1,83 @@
+// Prose extras rendered by Markdown inside `.content`:
+// GitHub-style alerts (no title in the HTML, so the label comes from ::before)
+// and bottom footnotes.
+
+$alert-note: #0969da
+$alert-tip: #1a7f37
+$alert-important: #8250df
+$alert-warning: #9a6700
+$alert-caution: #cf222e
+
+.content
+  // GitHub alerts: blockquote.markdown-alert-*
+  [class*="markdown-alert-"]
+    margin: 1.5rem 0
+    padding: 0.75rem 1rem
+    border-left: 0.25rem solid
+    border-radius: 4px
+
+    > :first-child
+      margin-top: 0
+    > :last-child
+      margin-bottom: 0
+
+    &::before
+      display: block
+      margin-bottom: 0.35rem
+      font-weight: 700
+      font-size: 0.8rem
+      text-transform: uppercase
+      letter-spacing: 0.03em
+
+  .markdown-alert-note
+    border-color: $alert-note
+    background: rgba($alert-note, 0.06)
+    &::before
+      content: "Note"
+      color: $alert-note
+
+  .markdown-alert-tip
+    border-color: $alert-tip
+    background: rgba($alert-tip, 0.06)
+    &::before
+      content: "Tip"
+      color: $alert-tip
+
+  .markdown-alert-important
+    border-color: $alert-important
+    background: rgba($alert-important, 0.06)
+    &::before
+      content: "Important"
+      color: $alert-important
+
+  .markdown-alert-warning
+    border-color: $alert-warning
+    background: rgba($alert-warning, 0.06)
+    &::before
+      content: "Warning"
+      color: $alert-warning
+
+  .markdown-alert-caution
+    border-color: $alert-caution
+    background: rgba($alert-caution, 0.06)
+    &::before
+      content: "Caution"
+      color: $alert-caution
+
+  // Inline footnote markers
+  .footnote-reference
+    font-size: 0.75em
+
+    a
+      text-decoration: none
+
+  // Bottom footnotes: section.footnotes > ol.footnotes-list
+  .footnotes
+    margin-top: 2.5rem
+    padding-top: 1rem
+    border-top: 1px solid #e5e5e5
+    color: $muted
+    font-size: 0.875rem
+
+    a
+      text-decoration: none

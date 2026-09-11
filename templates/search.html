@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Search &middot; {{ config.title }}{% endblock title %}
+
+{% block head %}
+<script defer src="{{ get_url(path='elasticlunr.min.js') }}"></script>
+<script defer src="{{ get_url(path='search_index.en.js') }}"></script>
+<script defer src="{{ get_url(path='js/search.js') }}"></script>
+{% endblock head %}
+
+{% block content %}
+<h1>Search</h1>
+<noscript>
+  <p class="search-noscript">Search requires JavaScript. Please enable it, or
+    browse via the <a href="{{ get_url(path='@/_index.md') }}">home feed</a>.</p>
+</noscript>
+<form id="search-form" role="search" onsubmit="return false;">
+  <div class="search-box">
+    <svg class="search-box__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="7"></circle>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+    <input type="search" id="search" name="q" placeholder="Search articles and galleries&hellip;" aria-label="Search articles and galleries" autocomplete="off" autofocus>
+  </div>
+</form>
+<div id="search-panel" class="search-panel">
+  <div class="search-panel__inner">
+    <p id="search-status" class="search-status" aria-live="polite"></p>
+    <ul id="search-results" class="search-results"></ul>
+  </div>
+</div>
+{% endblock content %}

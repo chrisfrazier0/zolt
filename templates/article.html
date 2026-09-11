@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} &middot; {{ config.title }}{% endblock title %}
+
+{% block content %}
+<article class="article">
+  <header class="article__header">
+    <h1>{{ page.title }}</h1>
+    {% include "partials/post_meta.html" %}
+  </header>
+
+  {% if page.extra.hero_image %}
+  <figure class="article__hero">
+    <img src="{{ get_url(path=page.extra.hero_image) }}" alt="{{ page.extra.hero_alt | default(value='') }}">
+  </figure>
+  {% endif %}
+
+  <div class="content">{{ page.content | safe }}</div>
+
+  {% if page.taxonomies.series %}
+    {% set series_name = page.taxonomies.series[0] %}
+    {% set term = get_taxonomy_term(kind="series", term=series_name) %}
+    {% set ordered = term.pages | sort(attribute="date") %}
+    {% set_global prev = false %}
+    {% set_global next = false %}
+    {% set_global found = false %}
+    {% for p in ordered %}
+      {% if found and not next %}{% set_global next = p %}{% endif %}
+      {% if p.permalink == page.permalink %}{% set_global found = true %}{% endif %}
+      {% if not found %}{% set_global prev = p %}{% endif %}
+    {% endfor %}
+    <nav class="series-nav" aria-label="Series navigation">
+      <p class="series-nav__label">
+        Part of the series
+        <a href="{{ get_taxonomy_url(kind='series', term=series_name) }}">{{ series_name }}</a>
+      </p>
+      <ul class="series-nav__links">
+        <li class="series-nav__prev">
+          {% if prev %}<a rel="prev" href="{{ prev.permalink }}">&larr; {{ prev.title }}</a>{% endif %}
+        </li>
+        <li class="series-nav__next">
+          {% if next %}<a rel="next" href="{{ next.permalink }}">{{ next.title }} &rarr;</a>{% endif %}
+        </li>
+      </ul>
+    </nav>
+  {% endif %}
+</article>
+{% endblock content %}

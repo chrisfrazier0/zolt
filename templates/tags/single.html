@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}#{{ term.name }} &middot; {{ config.title }}{% endblock title %}
+
+{% block content %}
+<h1 class="term-title">Posts tagged &ldquo;{{ term.name }}&rdquo;</h1>
+<div class="feed">
+  {% for page in paginator.pages %}
+  {% include "partials/post_card.html" %}
+  {% endfor %}
+</div>
+{% include "partials/pagination.html" %}
+{% endblock content %}

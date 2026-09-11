@@ -65,9 +65,6 @@ Sessionx.vim
 .netrwhist
 *~
 
-# vim auto-generated tag files
-tags
-
 # vim persistent undo
 [._]*.un~
 

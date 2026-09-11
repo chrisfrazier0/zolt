@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600" role="img" aria-label="Placeholder photo 1">
+  <rect width="100%" height="100%" fill="#ba68c8"/>
+  <text x="50%" y="50%" fill="#ffffff" font-family="sans-serif" font-size="64" text-anchor="middle" dominant-baseline="middle">Photo 1</text>
+  <text x="50%" y="65%" fill="#ffffff" font-family="sans-serif" font-size="28" text-anchor="middle" dominant-baseline="middle">900×600</text>
+</svg>

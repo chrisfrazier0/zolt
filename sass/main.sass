@@ -1,0 +1,326 @@
+$max-width: 48rem
+$accent: #3b6ea5
+$muted: #666
+$bg: #fff
+$fg: #1a1a1a
+
+@import "gallery"
+@import "code"
+@import "content"
+
+*
+  box-sizing: border-box
+
+html
+  background: $bg
+  scroll-behavior: smooth
+  scroll-padding-top: 2rem
+
+body
+  margin: 0
+  padding-inline: 1rem
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif
+  line-height: 1.6
+  color: $fg
+  background: $bg
+
+a
+  color: $accent
+
+.skip-link
+  position: absolute
+  left: 0.5rem
+  top: -3rem
+  z-index: 1000
+  padding: 0.375rem 0.625rem
+  font-size: 0.875rem
+  background: $accent
+  color: #fff
+  border-radius: 0
+  text-decoration: none
+  transition: top 0.15s ease
+
+  &:focus
+    top: 0.5rem
+
+.site-header, .site-main, .site-footer
+  max-width: $max-width
+  margin-inline: auto
+
+.site-header
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: space-between
+  gap: 0.5rem 1rem
+  padding-block: 1rem
+  border-bottom: 1px solid #e5e5e5
+
+.site-title
+  display: inline-flex
+  align-items: center
+  gap: 0.5rem
+  font-weight: 700
+  font-size: 2.25rem
+  text-decoration: none
+
+.site-logo
+  width: 5.5rem
+  height: 5.5rem
+  border-radius: 50%
+
+.site-nav
+  display: flex
+  gap: 1rem
+
+.site-footer
+  margin-top: 2rem
+  padding-block: 1.5rem
+  border-top: 1px solid #e5e5e5
+  color: $muted
+  font-size: 0.875rem
+
+// Home intro
+.home-intro
+  padding-bottom: 0.25rem
+  border-bottom: 1px solid #e5e5e5
+  color: $muted
+
+// Heading row: page title with feed icons sitting just after it
+.feed-head
+  display: flex
+  align-items: baseline
+  gap: 0.6rem
+
+// Atom/RSS feed icons
+.feed-links
+  display: inline-flex
+  align-items: center
+  gap: 0.5rem
+  flex-shrink: 0
+
+  &__link
+    display: inline-flex
+    line-height: 0
+    opacity: 0.85
+
+    &:hover
+      opacity: 1
+
+  &__icon
+    width: 1.15rem
+    height: 1.15rem
+
+  &__link--rss
+    color: #f26522
+
+  &__link--atom
+    color: $accent
+
+// Feed / listings
+.feed
+  display: flex
+  flex-direction: column
+  gap: 2rem
+
+// Drop the last card's separator when no pagination follows the list
+.feed:last-child .post-card:last-child
+  border-bottom: none
+  padding-bottom: 0
+
+.post-card
+  padding-bottom: 1.5rem
+  border-bottom: 1px solid #eee
+
+  &__title
+    margin: 0 0 0.25rem
+
+  &__hero
+    display: block
+    width: 100%
+    height: auto
+    border-radius: 4px
+
+.post-meta
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  gap: 0.5rem
+  color: $muted
+  font-size: 0.875rem
+
+  .post-updated
+    font-style: italic
+    opacity: 0.85
+
+  .post-tags
+    display: flex
+    flex-wrap: wrap
+    gap: 0.5rem
+    list-style: none
+    margin: 0
+    padding: 0
+
+// Pagination
+.pagination
+  display: flex
+  align-items: center
+  justify-content: space-between
+  gap: 1rem
+  margin-top: 1rem
+  padding-top: 1rem
+
+  &__status
+    color: $muted
+    font-size: 0.875rem
+
+  &__link
+    text-decoration: none
+    font-weight: 600
+
+    &--disabled
+      color: #bbb
+      pointer-events: none
+
+// Article
+.article__hero img
+  width: 100%
+  height: auto
+  border-radius: 4px
+
+.series-nav
+  margin-top: 2rem
+  padding-top: 1rem
+  border-top: 1px solid #e5e5e5
+
+  &__links
+    display: flex
+    justify-content: space-between
+    gap: 1rem
+    list-style: none
+    margin: 0
+    padding: 0
+
+// Term list pages
+.term-list
+  list-style: none
+  padding: 0
+
+  .term-count
+    color: $muted
+
+// Search
+.search-box
+  position: relative
+  margin-block: 1.25rem
+
+  &__icon
+    position: absolute
+    left: 0.9rem
+    top: 50%
+    transform: translateY(-50%)
+    color: $muted
+    pointer-events: none
+
+  input[type="search"]
+    width: 100%
+    padding: 0.75rem 1rem 0.75rem 2.9rem
+    font: inherit
+    color: inherit
+    background: #fff
+    border: 1px solid #ddd
+    border-radius: 0.5rem
+    appearance: none
+    -webkit-appearance: none
+    transition: border-color 0.15s ease, box-shadow 0.15s ease
+
+    &::placeholder
+      color: $muted
+
+    &:focus
+      outline: none
+      border-color: $accent
+      box-shadow: 0 0 0 3px rgba($accent, 0.15)
+
+.search-panel
+  display: grid
+  grid-template-rows: 0fr
+  transition: grid-template-rows 0.25s ease
+
+  &.is-open
+    grid-template-rows: 1fr
+
+  &__inner
+    overflow: hidden
+    min-height: 0
+
+.search-status
+  color: $muted
+
+.search-noscript
+  color: $muted
+  font-size: 0.875rem
+
+.search-results
+  list-style: none
+  padding: 0
+  margin: 0
+
+  li
+    animation: search-fade-in 0.25s ease both
+
+  .post-date
+    display: block
+    color: $muted
+    font-size: 0.875rem
+    margin-top: 0.15rem
+
+  &__excerpt
+    color: $muted
+    margin: 0.25rem 0 0
+
+@keyframes search-fade-in
+  from
+    opacity: 0
+    transform: translateY(4px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+@media (prefers-reduced-motion: reduce)
+  html
+    scroll-behavior: auto
+
+  .skip-link
+    transition: none
+
+  .search-results li
+    animation: none
+
+  .search-panel
+    transition: none
+
+// 404
+.not-found
+  text-align: center
+  padding-block: 3rem
+
+  &__code
+    margin: 0
+    font-size: 4rem
+    font-weight: 700
+    line-height: 1
+    color: $accent
+
+  &__title
+    margin: 0.5rem 0 0
+
+  &__message
+    color: $muted
+
+  &__actions
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    gap: 1rem
+    margin-top: 1.5rem
