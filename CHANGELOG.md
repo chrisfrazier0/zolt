@@ -34,6 +34,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Load the KaTeX, Mermaid, and copy-to-clipboard scripts only on pages that
+  actually use them, instead of on every page. `base.html` inspects the rendered
+  page/section content and includes each script only when the matching markup is
+  present (`class="math…"` for KaTeX, `class="mermaid"` for Mermaid,
+  `class="giallo"` for highlighted code blocks). Listing pages render card
+  summaries rather than full content, so they stay script-free.
 - Centralized all theme colours as CSS custom properties in `sass/_theme.sass`,
   so both the light and dark palettes are adjusted in one place.
 - Increased the home feed pagination from 3 to 4 items per page.

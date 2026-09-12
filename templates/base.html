@@ -8,8 +8,9 @@
 
   {# Content Security Policy. A meta CSP can't use frame-ancestors or sandbox
      (those require a real HTTP header), but it does constrain scripts, styles,
-     and connections. It allows self plus the jsDelivr CDN used for KaTeX;
-     'unsafe-inline' covers the small inline head scripts and KaTeX's styles. #}
+     and connections. It allows self plus the jsDelivr CDN used for KaTeX and
+     Mermaid; 'unsafe-inline' covers the small inline head scripts and KaTeX's
+     styles. #}
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
   <meta name="generator" content="based on zolt v{{ config.extra.zolt.version }} by Chris Frazier https://github.com/chrisfrazier0/zolt">
 
@@ -51,7 +52,16 @@
     })();
   </script>
 
-  {# KaTeX for math rendering. #}
+  {# Light/dark theme toggle. #}
+  <script defer src="{{ get_url(path='js/theme-toggle.js') }}"></script>
+
+  {# The rendered HTML of the current page or section, used to load the heavy
+     third-party scripts below only on pages that actually need them. #}
+  {% set content = page?.content or section?.content or "" %}
+
+  {# KaTeX for math rendering. Loaded only when the page contains a math span or
+     block (class="math…", emitted by the `katex` component). #}
+  {% if 'class="math' in content %}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
     integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
@@ -59,8 +69,11 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
     integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
     onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+  {% endif %}
 
-  {# Mermaid diagrams. #}
+  {# Mermaid diagrams. Loaded only when the page contains a diagram block
+     (class="mermaid", emitted by the `mermaid` component). #}
+  {% if 'class="mermaid"' in content %}
   <script defer src="https://cdn.jsdelivr.net/npm/mermaid@11.16.1/dist/mermaid.min.js"
     integrity="sha384-aBQXj4hK6Jm05i7aQAsUV3bLdSUrHX1BGYfMB0166TtWt/RRaw+h0Eelme9OCOvy" crossorigin="anonymous"
     onload="mermaid.initialize({
@@ -112,12 +125,15 @@
       }
     });">
   </script>
+  {% endif %}
 
-  {# Copy-to-clipboard buttons for code blocks. #}
+  {# Copy-to-clipboard buttons for code blocks. Loaded only when the page has a
+     fenced code block (Zola emits `class="giallo"` on those, regardless of the
+     configured colour theme); inline `code` in prose and Mermaid's own <pre>
+     don't trigger it. #}
+  {% if 'class="giallo"' in content %}
   <script defer src="{{ get_url(path='js/code-copy.js') }}"></script>
-
-  {# Light/dark theme toggle. #}
-  <script defer src="{{ get_url(path='js/theme-toggle.js') }}"></script>
+  {% endif %}
 
   {# Analytics / third-party snippets. #}
   {% include "partials/analytics.html" %}
