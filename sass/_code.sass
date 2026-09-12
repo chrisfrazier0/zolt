@@ -12,6 +12,61 @@ pre
     font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace
     display: grid
 
+// Copy-to-clipboard button, injected around each `pre` by code-copy.js. The
+// wrapper anchors the button so it stays put while the code scrolls.
+.code-block
+  position: relative
+
+  &:hover .code-block__copy,
+  .code-block__copy:focus-visible
+    opacity: 1
+
+.code-block__copy
+  position: absolute
+  top: 0.5rem
+  right: 0.5rem
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  width: 2rem
+  height: 2rem
+  padding: 0
+  color: #cdd6f4
+  background: rgba(30, 30, 46, 0.6)
+  border: 1px solid rgba(205, 214, 244, 0.2)
+  border-radius: 6px
+  cursor: pointer
+  opacity: 0
+  transition: opacity 0.15s ease, background 0.15s ease
+  -webkit-tap-highlight-color: transparent
+
+  &:hover
+    background: rgba(30, 30, 46, 0.9)
+
+  &:focus-visible
+    outline: 2px solid #89b4fa
+    outline-offset: 2px
+
+  .code-block__icon--check
+    display: none
+
+  &.is-copied
+    color: #a6e3a1
+
+    .code-block__icon--copy
+      display: none
+    .code-block__icon--check
+      display: block
+
+// Touch devices have no hover, so keep the button visible for them.
+@media (hover: none)
+  .code-block__copy
+    opacity: 1
+
+@media (prefers-reduced-motion: reduce)
+  .code-block__copy
+    transition: none
+
 // Inline code
 :not(pre) > code
   font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace

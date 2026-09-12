@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Copy-to-clipboard buttons on code blocks via `code-copy.js`, hidden until the
+  block is hovered (and always shown on touch devices), with a keyboard-focus
+  fallback and a reduced-motion opt-out.
+
 ### Changed
 
 - Converted the `pagination.html` and `feed_links.html` partials into Tera 2

@@ -12,6 +12,8 @@
      'unsafe-inline' covers the small inline head scripts and KaTeX's styles. #}
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
   <meta name="generator" content="based on zolt v{{ config.extra.zolt.version }} by Chris Frazier https://github.com/chrisfrazier0/zolt">
+
+  {# Title and site description. #}
   <title>{% block title %}{{ config.title }}{% endblock title %}</title>
   {% block description %}
   {% set desc = page?.description or section?.description or config.description %}
@@ -28,6 +30,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="{{ get_url(path='apple-touch-icon.png') }}">
   <link rel="manifest" href="{{ get_url(path='site.webmanifest') }}">
 
+  {# Site styles / theme. #}
   <link rel="stylesheet" href="{{ get_url(path='main.css') }}">
 
   {# KaTeX for math rendering. #}
@@ -38,6 +41,9 @@
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
     integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
     onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+
+  {# Copy-to-clipboard buttons for code blocks. #}
+  <script defer src="{{ get_url(path='js/code-copy.js') }}"></script>
 
   {# Analytics / third-party snippets. #}
   {% include "partials/analytics.html" %}
