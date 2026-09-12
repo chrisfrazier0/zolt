@@ -32,8 +32,8 @@ bottom_footnotes = true
 [markdown.highlighting]
 theme = "catppuccin-mocha"
 
-[extra]
-zolt_version = "1.0.0"
+[extra.zolt]
+version = "1.0.0"
 
 [extra.social]
 image = "img/og-default.png"

@@ -11,7 +11,7 @@
      and connections. It allows self plus the jsDelivr CDN used for KaTeX;
      'unsafe-inline' covers the small inline head scripts and KaTeX's styles. #}
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
-  <meta name="generator" content="based on zolt v{{ config.extra.zolt_version }} by Chris Frazier https://github.com/chrisfrazier0/zolt">
+  <meta name="generator" content="based on zolt v{{ config.extra.zolt.version }} by Chris Frazier https://github.com/chrisfrazier0/zolt">
   <title>{% block title %}{{ config.title }}{% endblock title %}</title>
   {% block description %}
   {% set desc = page?.description or section?.description or config.description %}
