@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Converted the `pagination.html` and `feed_links.html` partials into Tera 2
+  components with explicit parameters, replacing the previous
+  `{% set %}`-before-`{% include %}` call pattern.
+- Added a `feed_alternate` component for the `<head>` feed autodiscovery
+  `<link>` tags, removing the duplicated loop shared by the home and series
+  templates.
+- Moved each component into its own file under `templates/components/` (the
+  `katex` component included), one component per file.
+
 ## [1.0.0]
 
 Initial release.

@@ -3,16 +3,15 @@
 {% block title %}Series: {{ term.name }} &middot; {{ config.title }}{% endblock title %}
 
 {% block head %}
-{% for feed in config.feed_filenames %}
-<link rel="alternate" type="{% if 'atom' in feed %}application/atom+xml{% else %}application/rss+xml{% endif %}" title="{{ term.name }} series &middot; {{ config.title }}" href="{{ term.permalink ~ feed }}">
-{% endfor %}
+{% set feed_title = term.name ~ " series · " ~ config.title %}
+{{< feed_alternate config={config} feed_base={term.permalink} title={feed_title} />}}
 {% endblock head %}
 
 {% block content %}
 <div class="feed-head">
   <h1 class="term-title">Series: {{ term.name }}</h1>
   {% set feed_base = term.permalink %}
-  {% include "partials/feed_links.html" %}
+  {{< feed_links config={config} feed_base={feed_base} />}}
 </div>
 <p class="term-subtitle">Articles in this series, oldest first.</p>
 {% set ordered = term.pages | sort(attribute="date") %}

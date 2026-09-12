@@ -1,0 +1,8 @@
+{# <link rel="alternate"> feed hints for <head>. `feed_base` is a URL ending in
+   "/"; `title` is the feed title.
+   {{< feed_alternate config={config} feed_base={feed_base} title={config.title} />}} #}
+{% component feed_alternate(config, feed_base, title) %}
+{% for feed in config.feed_filenames %}
+<link rel="alternate" type="{% if 'atom' in feed %}application/atom+xml{% else %}application/rss+xml{% endif %}" title="{{ title }}" href="{{ feed_base ~ feed }}">
+{% endfor %}
+{% endcomponent feed_alternate %}

@@ -3,9 +3,8 @@
 {% block title %}{{ section.title }} &middot; {{ config.title }}{% endblock title %}
 
 {% block head %}
-{% for feed in config.feed_filenames %}
-<link rel="alternate" type="{% if 'atom' in feed %}application/atom+xml{% else %}application/rss+xml{% endif %}" title="{{ config.title }}" href="{{ get_url(path=feed) }}">
-{% endfor %}
+{% set feed_base = config.base_url ~ "/" %}
+{{< feed_alternate config={config} feed_base={feed_base} title={config.title} />}}
 {% endblock head %}
 
 {% block content %}
@@ -16,7 +15,7 @@
   <h1 class="feed-title">{% if paginator.current_index == 1 %}Latest posts{% else %}More posts{% endif %}</h1>
   {% if paginator.current_index == 1 %}
   {% set feed_base = config.base_url ~ "/" %}
-  {% include "partials/feed_links.html" %}
+  {{< feed_links config={config} feed_base={feed_base} />}}
   {% endif %}
 </div>
 <div class="feed">
@@ -25,7 +24,5 @@
   {% endfor %}
 </div>
 
-{% set prev_label = "Newer" %}
-{% set next_label = "Older" %}
-{% include "partials/pagination.html" %}
+{{< pagination paginator={paginator} prev_label="Newer" next_label="Older" />}}
 {% endblock content %}

@@ -1,4 +1,6 @@
-{# Atom/RSS feed icon links. Expects `feed_base`: a URL ending in "/". #}
+{# Atom/RSS feed icon links. `feed_base` is a URL ending in "/".
+   {{< feed_links config={config} feed_base={feed_base} />}} #}
+{% component feed_links(config, feed_base) %}
 <span class="feed-links">
   {% for feed in config.feed_filenames %}
   <a class="feed-links__link feed-links__link--{% if 'atom' in feed %}atom{% else %}rss{% endif %}" href="{{ feed_base ~ feed }}" title="{% if 'atom' in feed %}Atom{% else %}RSS{% endif %} feed" aria-label="{% if 'atom' in feed %}Atom{% else %}RSS{% endif %} feed">
@@ -9,3 +11,4 @@
   </a>
   {% endfor %}
 </span>
+{% endcomponent feed_links %}

@@ -9,5 +9,5 @@
   {% include "partials/post_card.html" %}
   {% endfor %}
 </div>
-{% include "partials/pagination.html" %}
+{{< pagination paginator={paginator} />}}
 {% endblock content %}

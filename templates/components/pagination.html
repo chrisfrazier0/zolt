@@ -1,0 +1,19 @@
+{# Pagination nav. Labels are optional.
+   {{< pagination paginator={paginator} prev_label="Newer" next_label="Older" />}} #}
+{% component pagination(paginator, prev_label="Prev", next_label="Next") %}
+{% if paginator.number_pagers > 1 %}
+<nav class="pagination" aria-label="Pagination">
+  {% if paginator.previous %}
+  <a class="pagination__link pagination__link--prev" href="{{ paginator.previous }}" rel="prev">&larr; {{ prev_label }}</a>
+  {% else %}
+  <span class="pagination__link pagination__link--prev pagination__link--disabled">&larr; {{ prev_label }}</span>
+  {% endif %}
+  <span class="pagination__status">Page {{ paginator.current_index }} of {{ paginator.number_pagers }}</span>
+  {% if paginator.next %}
+  <a class="pagination__link pagination__link--next" href="{{ paginator.next }}" rel="next">{{ next_label }} &rarr;</a>
+  {% else %}
+  <span class="pagination__link pagination__link--next pagination__link--disabled">{{ next_label }} &rarr;</span>
+  {% endif %}
+</nav>
+{% endif %}
+{% endcomponent pagination %}
