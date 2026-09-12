@@ -6,10 +6,15 @@
 <script defer src="{{ get_url(path='elasticlunr.min.js') }}"></script>
 <script defer src="{{ get_url(path='search_index.en.js') }}"></script>
 <script defer src="{{ get_url(path='js/search.js') }}"></script>
+
+{# Copy-link control on the page title. #}
+{% if 'class="zola-anchor"' not in (section?.content or "") %}
+<script defer src="{{ get_url(path='js/anchor-copy.js') }}"></script>
+{% endif %}
 {% endblock head %}
 
 {% block content %}
-<h1>Search</h1>
+<h1>Search<a class="zola-anchor zola-anchor--title" href="{{ section.permalink }}" aria-label="Copy link to this page" title="Copy link to page">{%- include "partials/copy_link_icon.html" -%}</a></h1>
 <noscript>
   <p class="search-noscript">Search requires JavaScript. Please enable it, or
     browse via the <a href="{{ get_url(path='@/_index.md') }}">home feed</a>.</p>

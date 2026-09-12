@@ -2,10 +2,17 @@
 
 {% block title %}{% set node = page | default(value=section) %}{{ node.title }} &middot; {{ config.title }}{% endblock title %}
 
+{% block head %}
+{% set node = page | default(value=section) %}
+{% if 'class="zola-anchor"' not in node.content %}
+<script defer src="{{ get_url(path='js/anchor-copy.js') }}"></script>
+{% endif %}
+{% endblock head %}
+
 {% block content %}
 {% set node = page | default(value=section) %}
 <article class="page">
-  <h1>{{ node.title }}</h1>
+  <h1>{{ node.title }}<a class="zola-anchor zola-anchor--title" href="{{ node.permalink }}" aria-label="Copy link to this page" title="Copy link to page">{%- include "partials/copy_link_icon.html" -%}</a></h1>
   <div class="content">{{ node.content | safe }}</div>
 </article>
 {% endblock content %}

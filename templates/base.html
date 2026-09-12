@@ -59,6 +59,12 @@
      third-party scripts below only on pages that actually need them. #}
   {% set content = page?.content or section?.content or "" %}
 
+  {# Copy-link buttons on heading anchors. Loaded only when the page has an
+     inserted heading anchor (class="zola-anchor"). #}
+  {% if 'class="zola-anchor"' in content %}
+  <script defer src="{{ get_url(path='js/anchor-copy.js') }}"></script>
+  {% endif %}
+
   {# KaTeX for math rendering. Loaded only when the page contains a math span or
      block (class="math…", emitted by the `katex` component). #}
   {% if 'class="math' in content %}

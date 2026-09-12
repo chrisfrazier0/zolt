@@ -24,7 +24,7 @@ include_date = true
 
 [markdown]
 lazy_async_image = true
-insert_anchor_links = "heading"
+insert_anchor_links = "right"
 render_emoji = true
 github_alerts = true
 bottom_footnotes = true

@@ -34,6 +34,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Heading anchors no longer wrap the whole heading text. Switched
+  `insert_anchor_links` from `"heading"` to `"right"` and added a custom
+  `anchor-link.html` that renders a small copy-link icon after the heading,
+  revealed on hover (and always shown on touch devices). Clicking anywhere on
+  the heading copies the section URL to the clipboard via the new
+  `anchor-copy.js` instead of just jumping, showing a brief checkmark. Every
+  page title (articles, galleries, standard pages, and search) carries the same
+  control, copying the page's URL. The shared icon markup lives in
+  `partials/copy_link_icon.html`. Loaded only on pages that need it.
 - Load the KaTeX, Mermaid, and copy-to-clipboard scripts only on pages that
   actually use them, instead of on every page. `base.html` inspects the rendered
   page/section content and includes each script only when the matching markup is

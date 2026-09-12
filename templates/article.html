@@ -2,10 +2,16 @@
 
 {% block title %}{{ page.title }} &middot; {{ config.title }}{% endblock title %}
 
+{% block head %}
+{% if 'class="zola-anchor"' not in page.content %}
+<script defer src="{{ get_url(path='js/anchor-copy.js') }}"></script>
+{% endif %}
+{% endblock head %}
+
 {% block content %}
 <article class="article">
   <header class="article__header">
-    <h1>{{ page.title }}</h1>
+    <h1>{{ page.title }}<a class="zola-anchor zola-anchor--title" href="{{ page.permalink }}" aria-label="Copy link to this page" title="Copy link to page">{%- include "partials/copy_link_icon.html" -%}</a></h1>
     {% include "partials/post_meta.html" %}
   </header>
 
