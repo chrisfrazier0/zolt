@@ -1,4 +1,4 @@
-base_url = "https://lab.frazier.software/zolt"
+base_url = "https://zolt.frazier.software"
 default_language = "en"
 hard_link_static = true
 

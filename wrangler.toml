@@ -1,0 +1,13 @@
+name = "zolt"
+compatibility_date = "2026-09-12"
+
+workers_dev = true
+preview_urls = false
+
+[[routes]]
+pattern = "zolt.frazier.software"
+custom_domain = true
+
+[assets]
+directory = "./public"
+not_found_handling = "404-page"

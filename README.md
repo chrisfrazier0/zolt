@@ -8,7 +8,7 @@
 > [Zola](https://www.getzola.org/) — a foundation to fork and make your own,
 > not a drop-in theme.
 
-**[Live demo →](https://lab.frazier.software/zolt/)**
+**[Live demo →](https://zolt.frazier.software)**
 
 [![release](https://img.shields.io/github/v/release/chrisfrazier0/zolt.svg)](https://github.com/chrisfrazier0/zolt/releases)
 [![license](https://img.shields.io/github/license/chrisfrazier0/zolt.svg)](LICENSE)
@@ -78,6 +78,6 @@ Licensed under the [MIT License](LICENSE).
 
 ## Links
 
-- Demo: <https://lab.frazier.software/zolt/>
+- Demo: <https://zolt.frazier.software>
 - Source: <https://github.com/chrisfrazier0/zolt>
 - Zola: <https://www.getzola.org/>

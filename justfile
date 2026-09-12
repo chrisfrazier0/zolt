@@ -24,14 +24,9 @@ serve:
     zola serve
 
 # Full production build: Zola build plus post-build steps.
-build: check clean zola-build strip-admin minify-js
+build: check clean zola-build strip-admin minify-js patch-badge
 
-# Build the GitHub Pages demo.
-build-pages: build patch-badge
-    rm -rf docs
-    mv public docs
-
-# Build the site into using zola build.
+# Build the site into public/ using zola build.
 zola-build:
     zola build
 

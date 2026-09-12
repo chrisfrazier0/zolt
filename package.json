@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "devDependencies": {
+    "esbuild": "0.25.9",
+    "prettier": "3.6.2"
+  }
+}

@@ -1,0 +1,73 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install tools
+        uses: taiki-e/install-action@v2
+        with:
+          tool: just@1.42.4,zola@0.23.4
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: just build
+
+      - name: Deploy to Cloufdlare
+        uses: cloudflare/wrangler-action@v4
+        with:
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: deploy
+
+      - name: Register GitHub deployment
+        uses: actions/github-script@v8
+        env:
+          DEPLOY_URL: https://zolt.frazier.software
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const deployment = await github.rest.repos.createDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.sha,
+              environment: "production",
+              auto_merge: false,
+              required_contexts: [],
+              transient_environment: false,
+              production_environment: true,
+            });
+
+            await github.rest.repos.createDeploymentStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              deployment_id: deployment.data.id,
+              state: "success",
+              environment: "production",
+              environment_url: process.env.DEPLOY_URL,
+              log_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            });
