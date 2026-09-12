@@ -4,21 +4,21 @@
 
 # zolt
 
-> zolt (Zola Template) is an opinionated skeleton for
-> [Zola](https://www.getzola.org/) — not a ready-to-run site, but a starting
-> point that makes building new sites less painful.
+> zolt (Zola Template) is an opinionated starting point for
+> [Zola](https://www.getzola.org/) — a foundation to fork and make your own,
+> not a drop-in theme.
 
 **[Live demo →](https://lab.frazier.software/zolt/)**
 
 [![release](https://img.shields.io/github/v/release/chrisfrazier0/zolt.svg)](https://github.com/chrisfrazier0/zolt/releases)
 [![license](https://img.shields.io/github/license/chrisfrazier0/zolt.svg)](LICENSE)
 
-zolt stays out of your way. It's a skeleton, not a finished site — it wires up
-the parts you'd otherwise rebuild every time — articles, galleries, taxonomies,
-feeds, and search — so starting a new Zola site is less painful and repetitive.
-The styles are intentionally minimal: a plain, readable baseline meant to be
-replaced, not a theme to fight. Delete the sample content, edit `zola.toml`, and
-build from there.
+zolt stays out of your way. It wires up the parts you'd otherwise rebuild every
+time — articles, galleries, taxonomies, feeds, search, light/dark mode, etc. —
+so starting a new Zola site is less painful and repetitive. The styles are
+intentionally restrained: a clean, readable baseline you can run as-is or use as
+the groundwork for your own design. Delete the sample content, edit `zola.toml`,
+and build from there.
 
 ## Requirements
 
@@ -51,10 +51,11 @@ Edit `zola.toml` — set `base_url`, `title`, `description`, and `author`. The
 `base_url` drives feed URLs, the sitemap, and absolute links, so set it before
 deploying. Then replace the sample content under `content/`.
 
-That's the starting point, not the finish line. zolt is a skeleton, so expect to
-make it yours: adjust the templates in `templates/` to fit your structure, and
-bring your own styles — the SASS in `sass/` is a bare baseline meant to be
-extended or swapped out, not a finished design.
+zolt is built to be forked and modified. Adjust the templates in `templates/`
+to fit your structure, and shape the look from `sass/` — the colour palette
+lives in one place (`sass/_theme.sass`), so light and dark are easy to retune,
+and the rest is a baseline to extend or replace. Run it close to the default
+or take it somewhere else entirely.
 
 ### Analytics
 
