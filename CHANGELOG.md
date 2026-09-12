@@ -30,6 +30,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Moved each component into its own file under `templates/components/` (the
   `katex` component included), one component per file.
 
+### Fixed
+
+- Gallery lightbox on small screens: the prev/next chevrons no longer overlap
+  the image (the figure reserves a horizontal gutter on each side) and the
+  prev/next/close controls have larger tap targets.
+
 ## [1.0.0]
 
 Initial release.
