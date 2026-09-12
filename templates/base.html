@@ -33,6 +33,24 @@
   {# Site styles / theme. #}
   <link rel="stylesheet" href="{{ get_url(path='main.css') }}">
 
+  {# Apply the saved light/dark choice before first paint to avoid a flash (no
+     saved choice falls through to the CSS system-preference media query). This
+     runs right after main.css so the browser-UI colour can be read from the
+     --bg token, keeping sass/_theme.sass the single source of truth. #}
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("theme");
+        if (stored === "light" || stored === "dark") {
+          document.documentElement.setAttribute("data-theme", stored);
+        }
+        var meta = document.querySelector('meta[name="theme-color"]');
+        var bg = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim();
+        if (meta && bg) meta.setAttribute("content", bg);
+      } catch (e) {}
+    })();
+  </script>
+
   {# KaTeX for math rendering. #}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
     integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
@@ -44,6 +62,9 @@
 
   {# Copy-to-clipboard buttons for code blocks. #}
   <script defer src="{{ get_url(path='js/code-copy.js') }}"></script>
+
+  {# Light/dark theme toggle. #}
+  <script defer src="{{ get_url(path='js/theme-toggle.js') }}"></script>
 
   {# Analytics / third-party snippets. #}
   {% include "partials/analytics.html" %}
@@ -65,6 +86,12 @@
       <a href="{{ home_url }}"{% if here == home_url %} aria-current="page"{% endif %}>Home</a>
       <a href="{{ about_url }}"{% if here == about_url %} aria-current="page"{% endif %}>About</a>
       <a href="{{ search_url }}"{% if here == search_url %} aria-current="page"{% endif %}>Search</a>
+      <button type="button" class="theme-toggle" aria-label="Switch to dark theme" aria-pressed="false" title="Dark mode">
+        <svg class="theme-toggle__icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"></circle>
+          <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"></path>
+        </svg>
+      </button>
     </nav>
   </header>
 

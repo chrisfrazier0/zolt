@@ -2,11 +2,12 @@
 // GitHub-style alerts (no title in the HTML, so the label comes from ::before)
 // and bottom footnotes.
 
-$alert-note: #0969da
-$alert-tip: #1a7f37
-$alert-important: #8250df
-$alert-warning: #9a6700
-$alert-caution: #cf222e
+// Color aliases.
+$alert-note: var(--alert-note)
+$alert-tip: var(--alert-tip)
+$alert-important: var(--alert-important)
+$alert-warning: var(--alert-warning)
+$alert-caution: var(--alert-caution)
 
 .content
   // GitHub alerts: blockquote.markdown-alert-*
@@ -31,35 +32,35 @@ $alert-caution: #cf222e
 
   .markdown-alert-note
     border-color: $alert-note
-    background: rgba($alert-note, 0.06)
+    background: color-mix(in srgb, var(--alert-note) 8%, transparent)
     &::before
       content: "Note"
       color: $alert-note
 
   .markdown-alert-tip
     border-color: $alert-tip
-    background: rgba($alert-tip, 0.06)
+    background: color-mix(in srgb, var(--alert-tip) 8%, transparent)
     &::before
       content: "Tip"
       color: $alert-tip
 
   .markdown-alert-important
     border-color: $alert-important
-    background: rgba($alert-important, 0.06)
+    background: color-mix(in srgb, var(--alert-important) 8%, transparent)
     &::before
       content: "Important"
       color: $alert-important
 
   .markdown-alert-warning
     border-color: $alert-warning
-    background: rgba($alert-warning, 0.06)
+    background: color-mix(in srgb, var(--alert-warning) 8%, transparent)
     &::before
       content: "Warning"
       color: $alert-warning
 
   .markdown-alert-caution
     border-color: $alert-caution
-    background: rgba($alert-caution, 0.06)
+    background: color-mix(in srgb, var(--alert-caution) 8%, transparent)
     &::before
       content: "Caution"
       color: $alert-caution
@@ -75,7 +76,7 @@ $alert-caution: #cf222e
   .footnotes
     margin-top: 2.5rem
     padding-top: 1rem
-    border-top: 1px solid #e5e5e5
+    border-top: 1px solid $border
     color: $muted
     font-size: 0.875rem
 

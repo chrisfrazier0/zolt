@@ -7,6 +7,9 @@ pre
   border-radius: 6px
   font-size: 0.9rem
   line-height: 1.4
+  // The highlighter inlines the theme's background on the element, so override
+  // it here to swap Catppuccin's blue-tinted base for the neutral --code-bg.
+  background-color: $code-bg !important
 
   code
     font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace
@@ -32,7 +35,7 @@ pre
   height: 2rem
   padding: 0
   color: #cdd6f4
-  background: rgba(30, 30, 46, 0.6)
+  background: color-mix(in srgb, var(--code-bg) 60%, transparent)
   border: 1px solid rgba(205, 214, 244, 0.2)
   border-radius: 6px
   cursor: pointer
@@ -41,7 +44,7 @@ pre
   -webkit-tap-highlight-color: transparent
 
   &:hover
-    background: rgba(30, 30, 46, 0.9)
+    background: color-mix(in srgb, var(--code-bg) 90%, transparent)
 
   &:focus-visible
     outline: 2px solid #89b4fa
@@ -72,7 +75,7 @@ pre
   font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace
   font-size: 0.9rem
   padding: 0.1em 0.35em
-  background: #f0f0f0
+  background: $code-inline-bg
   border-radius: 4px
 
 .giallo-l[style]
