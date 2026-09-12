@@ -1,0 +1,10 @@
+{# Mermaid diagram. Wrap the diagram source in this component so Markdown leaves
+   it untouched (no escaped arrows, no code-block reflow) before Mermaid renders
+   it in the browser. The output is a <pre class="mermaid"> whose text content is
+   the raw definition; the loader in base.html swaps in an SVG on load.
+
+   {% <mermaid> %}
+   flowchart LR
+     A --> B
+   {% </mermaid> %} #}
+{% component mermaid() %}<pre class="mermaid">{{ body | trim }}</pre>{% endcomponent mermaid %}

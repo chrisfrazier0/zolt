@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Mermaid diagram support via a `mermaid` component: wrap the diagram source in
+  `{% <mermaid> %}…{% </mermaid> %}` and it renders client-side. Mermaid is
+  loaded from jsDelivr in `base.html` as the single-file UMD build with an SRI
+  integrity hash (matching the KaTeX setup) and themed to match the
+  catppuccin-mocha code highlighting and the `--code-bg` card, so diagrams read
+  identically in light and dark mode. See the new "Diagrams with Mermaid"
+  example article.
 - Inline galleries embeddable in article prose via a `gallery` component:
   declare named image sets in a page's front matter (`[extra.galleries.<id>]`)
   and drop `{{ <gallery images={page.extra.galleries.<id>.images}
@@ -29,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Centralized all theme colours as CSS custom properties in `sass/_theme.sass`,
   so both the light and dark palettes are adjusted in one place.
+- Increased the home feed pagination from 3 to 4 items per page.
 
 - Converted the `pagination.html` and `feed_links.html` partials into Tera 2
   components with explicit parameters, replacing the previous

@@ -1,0 +1,15 @@
+// Mermaid diagrams. The source lives in a <pre class="mermaid">, so the shared
+// `pre` rules already give it the dark code-block card (background, padding,
+// rounded corners). Here we only centre the rendered SVG and hide the raw
+// source flash before the client-side script swaps it in.
+.mermaid
+  text-align: center
+
+  // Before Mermaid processes the block, keep the raw definition invisible so it
+  // doesn't flash as plain text; the empty dark card matches the code blocks.
+  &:not([data-processed="true"])
+    color: transparent
+
+  svg
+    max-width: 100%
+    height: auto

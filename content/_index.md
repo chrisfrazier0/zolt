@@ -2,7 +2,7 @@
 title = "Home"
 description = "The zolt demo — articles and galleries woven together, newest first."
 sort_by = "date"
-paginate_by = 3
+paginate_by = 4
 paginate_path = ""
 +++
 

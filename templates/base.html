@@ -60,6 +60,59 @@
     integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
     onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
 
+  {# Mermaid diagrams. #}
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid@11.16.1/dist/mermaid.min.js"
+    integrity="sha384-aBQXj4hK6Jm05i7aQAsUV3bLdSUrHX1BGYfMB0166TtWt/RRaw+h0Eelme9OCOvy" crossorigin="anonymous"
+    onload="mermaid.initialize({
+      startOnLoad: true,
+      securityLevel: 'strict',
+      theme: 'base',
+      fontFamily: &quot;system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif&quot;,
+      themeVariables: {
+        darkMode: true,
+        background: '#1e1e26',
+        mainBkg: '#313244',
+        primaryColor: '#313244',
+        primaryTextColor: '#cdd6f4',
+        primaryBorderColor: '#89b4fa',
+        secondaryColor: '#45475a',
+        secondaryTextColor: '#cdd6f4',
+        secondaryBorderColor: '#94e2d5',
+        tertiaryColor: '#181825',
+        tertiaryTextColor: '#cdd6f4',
+        tertiaryBorderColor: '#585b70',
+        lineColor: '#9399b2',
+        textColor: '#cdd6f4',
+        nodeBorder: '#89b4fa',
+        clusterBkg: '#181825',
+        clusterBorder: '#585b70',
+        titleColor: '#cdd6f4',
+        edgeLabelBackground: '#1e1e26',
+        noteBkgColor: '#f9e2af',
+        noteTextColor: '#1e1e2e',
+        noteBorderColor: '#f9e2af',
+        actorBkg: '#313244',
+        actorBorder: '#89b4fa',
+        actorTextColor: '#cdd6f4',
+        signalColor: '#cdd6f4',
+        signalTextColor: '#cdd6f4',
+        labelBoxBkgColor: '#313244',
+        labelBoxBorderColor: '#89b4fa',
+        labelTextColor: '#cdd6f4',
+        pie1: '#89b4fa',
+        pie2: '#f38ba8',
+        pie3: '#a6e3a1',
+        pie4: '#fab387',
+        pie5: '#cba6f7',
+        pie6: '#94e2d5',
+        pieTitleTextColor: '#cdd6f4',
+        pieSectionTextColor: '#1e1e2e',
+        pieStrokeColor: '#585b70',
+        pieOuterStrokeColor: '#585b70'
+      }
+    });">
+  </script>
+
   {# Copy-to-clipboard buttons for code blocks. #}
   <script defer src="{{ get_url(path='js/code-copy.js') }}"></script>
 
