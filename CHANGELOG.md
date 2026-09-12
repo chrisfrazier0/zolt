@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   declare a list of named image sets in a page's front matter
   (`[[extra.galleries]]` with a `name` and `images`) and drop
   `{{ <gallery galleries={page.extra.galleries} name="<id>"
-  base_path={page.colocated_path} /> }}` wherever you want a preview row. Each gallery shows the first few thumbnails with a "+N" overflow
+base_path={page.colocated_path} /> }}` wherever you want a preview row. Each gallery shows the first few thumbnails with a "+N" overflow
   indicator and opens a lightbox scoped to only its own images, so multiple
   galleries can live in one article and navigate independently. Backed by a
   reusable `lightbox` component now shared with the gallery page template. See
@@ -82,7 +82,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the image (the figure reserves a horizontal gutter on each side) and the
   prev/next/close controls have larger tap targets.
 
-## [1.0.0]
+## [1.0.0] - 2026-09-11
 
 Initial release.
 
