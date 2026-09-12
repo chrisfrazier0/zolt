@@ -13,7 +13,7 @@
   <div class="masonry">
     {% for img in page.extra.images %}
     <figure class="masonry__item">
-      <a class="masonry__link" href="#{{ page.slug }}-{{ loop.index }}">
+      <a class="masonry__link" id="{{ page.slug }}-thumb-{{ loop.index }}" href="#{{ page.slug }}-{{ loop.index }}">
         <img src="{{ get_url(path='@/' ~ page.colocated_path ~ img.src) }}" alt="{{ img.alt }}" loading="lazy" decoding="async">
       </a>
       {% if img.caption %}<figcaption>{{ img.caption }}</figcaption>{% endif %}
@@ -22,21 +22,6 @@
   </div>
 
   {# CSS-only lightbox overlays with prev/next (carousel). #}
-  {% for img in page.extra.images %}
-  <div class="lightbox" id="{{ page.slug }}-{{ loop.index }}" role="dialog" aria-modal="true" aria-label="{{ img.alt }}">
-    <a class="lightbox__backdrop" href="#" aria-label="Close"></a>
-    <a class="lightbox__close" href="#" aria-label="Close">&times;</a>
-    {% if not loop.first %}
-    <a class="lightbox__prev" href="#{{ page.slug }}-{{ loop.index - 1 }}" aria-label="Previous">&lsaquo;</a>
-    {% endif %}
-    <figure class="lightbox__figure">
-      <img src="{{ get_url(path='@/' ~ page.colocated_path ~ img.src) }}" alt="{{ img.alt }}">
-      {% if img.caption %}<figcaption>{{ img.caption }}</figcaption>{% endif %}
-    </figure>
-    {% if not loop.last %}
-    <a class="lightbox__next" href="#{{ page.slug }}-{{ loop.index + 1 }}" aria-label="Next">&rsaquo;</a>
-    {% endif %}
-  </div>
-  {% endfor %}
+  {{ <lightbox images={page.extra.images} id_prefix={page.slug} base_path={page.colocated_path} /> }}
 </article>
 {% endblock content %}

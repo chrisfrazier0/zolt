@@ -17,6 +17,30 @@
     font-weight: 700
     font-size: 1.2rem
 
+// Inline gallery preview embedded in article prose.
+.gallery-inline
+  display: flex
+  gap: 0.5rem
+  align-items: center
+  margin: 1.5rem 0
+
+  &__item
+    flex: 0 1 calc((100% - 1rem) / 3)
+    height: 8rem
+    border-radius: 4px
+    overflow: hidden
+
+    img
+      display: block
+      width: 100%
+      height: 100%
+      object-fit: cover
+
+  &__more
+    color: $muted
+    font-weight: 700
+    font-size: 1.2rem
+
 // Masonry layout using CSS multi-column
 .masonry
   column-count: 3

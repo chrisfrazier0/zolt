@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Inline galleries embeddable in article prose via a `gallery` component:
+  declare named image sets in a page's front matter (`[extra.galleries.<id>]`)
+  and drop `{{ <gallery images={page.extra.galleries.<id>.images}
+  base_path={page.colocated_path} id_prefix="<id>" /> }}` wherever you want a
+  preview row. Each gallery shows the first few thumbnails with a "+N" overflow
+  indicator and opens a lightbox scoped to only its own images, so multiple
+  galleries can live in one article and navigate independently. Backed by a
+  reusable `lightbox` component now shared with the gallery page template. See
+  the new "A Day at the Coast" example article.
 - Light and dark mode support that defaults to the system preference, with a
   half-filled circle toggle in the site navigation (`theme-toggle.js`) and a
   zero-flash inline `<head>` script that applies the saved choice before paint.

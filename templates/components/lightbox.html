@@ -1,0 +1,24 @@
+{# CSS-only lightbox overlays with scoped prev/next carousel navigation.
+   `images` is a list of { src, alt, caption? }. `id_prefix` scopes the anchor
+   IDs so multiple galleries on one page navigate independently. `base_path` is
+   prepended to each `src` (use page.colocated_path for colocated images, or ""
+   for paths already relative to the content root).
+   {{ <lightbox images={page.extra.images} id_prefix={page.slug} base_path={page.colocated_path} /> }} #}
+{% component lightbox(images, id_prefix, base_path="") %}
+{% for img in images %}
+<div class="lightbox" id="{{ id_prefix }}-{{ loop.index }}" role="dialog" aria-modal="true" aria-label="{{ img.alt }}">
+  <a class="lightbox__backdrop" href="#{{ id_prefix }}-thumb-{{ loop.index }}" aria-label="Close"></a>
+  <a class="lightbox__close" href="#{{ id_prefix }}-thumb-{{ loop.index }}" aria-label="Close">&times;</a>
+  {% if not loop.first %}
+  <a class="lightbox__prev" href="#{{ id_prefix }}-{{ loop.index - 1 }}" aria-label="Previous">&lsaquo;</a>
+  {% endif %}
+  <figure class="lightbox__figure">
+    <img src="{{ get_url(path='@/' ~ base_path ~ img.src) }}" alt="{{ img.alt }}">
+    {% if img.caption %}<figcaption>{{ img.caption }}</figcaption>{% endif %}
+  </figure>
+  {% if not loop.last %}
+  <a class="lightbox__next" href="#{{ id_prefix }}-{{ loop.index + 1 }}" aria-label="Next">&rsaquo;</a>
+  {% endif %}
+</div>
+{% endfor %}
+{% endcomponent lightbox %}
