@@ -1,0 +1,277 @@
+# Sveltia CMS configuration.
+# Schema: https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+media_folder = "/static/upload"
+public_folder = "upload"
+
+[backend]
+name = "github"
+repo = "chrisfrazier0/zolt"
+branch = "main"
+
+# Pages -----------------------------------------------------------------------
+[[collections]]
+name = "pages"
+label = "Pages"
+format = "toml-frontmatter"
+
+  [[collections.files]]
+  name = "about"
+  label = "About"
+  file = "content/about/_index.md"
+  fields = [
+    { label = "Title", name = "title", widget = "string" },
+    { label = "Description", name = "description", widget = "text" },
+    { label = "Template", name = "template", widget = "hidden", default = "page.html" },
+    { label = "Body", name = "body", widget = "markdown" },
+  ]
+
+  [[collections.files]]
+  name = "search"
+  label = "Search"
+  file = "content/search/_index.md"
+  fields = [
+    { label = "Title", name = "title", widget = "string" },
+    { label = "Description", name = "description", widget = "text" },
+    { label = "Template", name = "template", widget = "hidden", default = "search.html" },
+    { label = "Body", name = "body", widget = "markdown", required = false },
+  ]
+
+# Articles --------------------------------------------------------------------
+[[collections]]
+name = "article"
+label = "Articles"
+label_singular = "Article"
+folder = "content/article"
+create = true
+format = "toml-frontmatter"
+path = "{{year}}-{{month}}-{{day}}-{{slug}}/index"
+sortable_fields = ["title", "updated"]
+
+  [[collections.fields]]
+  label = "Title"
+  name = "title"
+  widget = "string"
+
+  [[collections.fields]]
+  label = "Description"
+  name = "description"
+  widget = "text"
+
+  [[collections.fields]]
+  label = "Updated"
+  name = "updated"
+  widget = "datetime"
+  date_format = "YYYY-MM-DD"
+  time_format = false
+  picker_utc = true
+  required = false
+  hint = "Optional. Shown as the last-updated date."
+
+  [[collections.fields]]
+  label = "Taxonomies"
+  name = "taxonomies"
+  widget = "object"
+  required = false
+  collapsed = false
+  fields = [
+    { label = "Tags", name = "tags", widget = "list", required = false },
+    { label = "Series", name = "series", widget = "list", required = false },
+    { label = "Location", name = "location", widget = "list", required = false },
+  ]
+
+  [[collections.fields]]
+  label = "Extra"
+  name = "extra"
+  widget = "object"
+  required = false
+  collapsed = false
+
+    [[collections.fields.fields]]
+    label = "Hero image"
+    name = "hero_image"
+    widget = "image"
+    required = false
+    media_folder = "/content/article/hero"
+    public_folder = "article/hero"
+
+    [[collections.fields.fields]]
+    label = "Hero alt"
+    name = "hero_alt"
+    widget = "string"
+    required = false
+
+    [[collections.fields.fields]]
+    label = "Social image"
+    name = "social_image"
+    widget = "image"
+    required = false
+    media_folder = "/content/article/hero"
+    public_folder = "article/hero"
+    hint = "Overrides the default Open Graph/Twitter card image."
+
+    [[collections.fields.fields]]
+    label = "Social image alt"
+    name = "social_image_alt"
+    widget = "string"
+    required = false
+
+    [[collections.fields.fields]]
+    label = "Social title"
+    name = "social_title"
+    widget = "string"
+    required = false
+
+    [[collections.fields.fields]]
+    label = "Social description"
+    name = "social_description"
+    widget = "text"
+    required = false
+
+    [[collections.fields.fields]]
+    label = "Social author"
+    name = "social_author"
+    widget = "string"
+    required = false
+    hint = "Twitter @handle for twitter:creator."
+
+    [[collections.fields.fields]]
+    label = "OG type override"
+    name = "og_type"
+    widget = "select"
+    required = false
+    options = ["website", "article"]
+
+    [[collections.fields.fields]]
+    label = "Inline galleries"
+    name = "galleries"
+    label_singular = "Gallery"
+    widget = "list"
+    required = false
+    summary = "{{fields.name}}"
+
+      [[collections.fields.fields.fields]]
+      label = "Name"
+      name = "name"
+      widget = "string"
+      hint = 'Referenced in the body as name="…".'
+
+      [[collections.fields.fields.fields]]
+      label = "Images"
+      name = "images"
+      widget = "list"
+      fields = [
+        { label = "Image", name = "src", widget = "image"  },
+        { label = "Alt text", name = "alt", widget = "string" },
+        { label = "Caption", name = "caption", widget = "string", required = false },
+      ]
+
+  [[collections.fields]]
+  label = "Body"
+  name = "body"
+  widget = "markdown"
+
+# Galleries -------------------------------------------------------------------
+[[collections]]
+name = "gallery"
+label = "Galleries"
+label_singular = "Gallery"
+folder = "content/gallery"
+create = true
+format = "toml-frontmatter"
+path = "{{year}}-{{month}}-{{day}}-{{slug}}/index"
+sortable_fields = ["title", "updated"]
+
+  [[collections.fields]]
+  label = "Title"
+  name = "title"
+  widget = "string"
+
+  [[collections.fields]]
+  label = "Description"
+  name = "description"
+  widget = "text"
+
+  [[collections.fields]]
+  label = "Updated"
+  name = "updated"
+  widget = "datetime"
+  date_format = "YYYY-MM-DD"
+  time_format = false
+  picker_utc = true
+  required = false
+  hint = "Optional. Shown as the last-updated date."
+
+  [[collections.fields]]
+  label = "Taxonomies"
+  name = "taxonomies"
+  widget = "object"
+  required = false
+  collapsed = false
+  fields = [
+    { label = "Tags", name = "tags", widget = "list", required = false },
+    { label = "Location", name = "location", widget = "list", required = false },
+  ]
+
+  [[collections.fields]]
+  label = "Extra"
+  name = "extra"
+  widget = "object"
+  collapsed = false
+
+    [[collections.fields.fields]]
+    label = "Images"
+    name = "images"
+    widget = "list"
+    fields = [
+      { label = "Image", name = "src", widget = "image" },
+      { label = "Alt text", name = "alt", widget = "string" },
+      { label = "Caption", name = "caption", widget = "string", required = false },
+    ]
+
+    [[collections.fields.fields]]
+    label = "Social image"
+    name = "social_image"
+    widget = "image"
+    required = false
+    media_folder = "/content/gallery/hero"
+    public_folder = "gallery/hero"
+    hint = "Overrides the default Open Graph/Twitter card image."
+
+    [[collections.fields.fields]]
+    label = "Social image alt"
+    name = "social_image_alt"
+    widget = "string"
+    required = false
+
+    [[collections.fields.fields]]
+    label = "Social title"
+    name = "social_title"
+    widget = "string"
+    required = false
+
+    [[collections.fields.fields]]
+    label = "Social description"
+    name = "social_description"
+    widget = "text"
+    required = false
+
+    [[collections.fields.fields]]
+    label = "Social author"
+    name = "social_author"
+    widget = "string"
+    required = false
+    hint = "Twitter @handle for twitter:creator."
+
+    [[collections.fields.fields]]
+    label = "OG type override"
+    name = "og_type"
+    widget = "select"
+    required = false
+    options = ["website", "article"]
+
+  [[collections.fields]]
+  label = "Body"
+  name = "body"
+  widget = "markdown"
+  required = false

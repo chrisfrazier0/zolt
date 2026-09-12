@@ -19,12 +19,12 @@ fmt-check:
 fmt:
     npx --yes prettier --write --print-width 100 'static/js/**/*.js'
 
-# Serve the site locally with live reload.
+# Serve the site locally with live reload and Sveltia CMS.
 serve:
     zola serve
 
 # Full production build: Zola build plus post-build steps.
-build: check clean zola-build minify-js
+build: check clean zola-build strip-admin minify-js
 
 # Build the GitHub Pages demo.
 build-pages: build patch-badge
@@ -34,6 +34,10 @@ build-pages: build patch-badge
 # Build the site into using zola build.
 zola-build:
     zola build
+
+# Remove the Sveltia CMS admin panel from the build output.
+strip-admin:
+    rm -rf public/admin
 
 # Minify the *.js copied from static/js/.
 minify-js:

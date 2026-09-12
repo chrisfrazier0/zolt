@@ -1,30 +1,34 @@
 {# Inline gallery embedded in article prose.
 
-   Declare the images in the page's front matter under a named key, then invoke
-   the component where you want the gallery to appear, passing the image list,
-   the colocated base path and a unique id prefix:
+   Declare the galleries in the page's front matter as a list, giving each one a
+   unique `name` and its own `images`, then invoke the component where you want a
+   gallery to appear, passing the whole list, the name to render and the
+   colocated base path:
 
-     [extra.galleries.harbor]
+     [[extra.galleries]]
+     name = "harbor"
      images = [
        { src = "harbor-1.svg", alt = "Boats at dusk", caption = "Golden hour." },
        { src = "harbor-2.svg", alt = "Empty pier" },
      ]
 
-     {{ <gallery images={page.extra.galleries.harbor.images} base_path={page.colocated_path} id_prefix="harbor" /> }}
+     {{ <gallery galleries={page.extra.galleries} name="harbor" base_path={page.colocated_path} /> }}
 
-   Multiple galleries per article are supported: give each one its own key and
-   its own component call with a distinct `id_prefix`. The preview shows the
-   first `preview` thumbnails (default 3) with a "+N" overlay when there are
-   more; the lightbox always lets you page through every image, scoped to just
-   this gallery's entries. #}
-{%- component gallery(images, id_prefix, base_path="", preview=3) -%}
+   Multiple galleries per article are supported: give each one its own `name` and
+   a matching component call. The `name` also scopes the anchor IDs so galleries
+   navigate independently. The preview shows the first `preview` thumbnails
+   (default 3) with a "+N" overlay when there are more; the lightbox always lets
+   you page through every image, scoped to just this gallery's entries. #}
+{%- component gallery(galleries, name, base_path="", preview=3) -%}
+{%- set_global images = [] -%}
+{%- for g in galleries -%}{%- if g.name == name -%}{%- set_global images = g.images -%}{%- endif -%}{%- endfor -%}
 {%- set total = images | length -%}
 <div class="gallery-inline">
 {%- for img in images %}
 {%- if loop.index > preview %}{% break %}{% endif %}
-<a class="gallery-inline__item" id="{{ id_prefix }}-thumb-{{ loop.index }}" href="#{{ id_prefix }}-{{ loop.index }}"><img src="{{ get_url(path='@/' ~ base_path ~ img.src) }}" alt="{{ img.alt }}" loading="lazy" decoding="async"></a>
+<a class="gallery-inline__item" id="{{ name }}-thumb-{{ loop.index }}" href="#{{ name }}-{{ loop.index }}"><img src="{{ get_url(path='@/' ~ base_path ~ img.src) }}" alt="{{ img.alt }}" loading="lazy" decoding="async"></a>
 {%- endfor %}
 {%- if total > preview %}<span class="gallery-inline__more">+{{ total - preview }}</span>{% endif %}
 </div>
-{{ <lightbox images={images} id_prefix={id_prefix} base_path={base_path} /> }}
+{{ <lightbox images={images} id_prefix={name} base_path={base_path} /> }}
 {%- endcomponent gallery %}
