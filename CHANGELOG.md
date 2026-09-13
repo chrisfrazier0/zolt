@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- A "Typography & Markdown" example article that showcases the everyday Markdown
+  formatting the theme renders on a single page — headings, text styles, lists
+  (including task lists), blockquotes and GitHub-style alerts, links, an inline
+  image, tables with column alignment, and a horizontal rule. Code blocks,
+  KaTeX, and Mermaid have their own articles and are omitted here.
+- A single-image lightbox for inline prose images via `inline-image.js`: prose
+  images (excluding linked and gallery images) become clickable and open in a
+  close-only overlay with backdrop-click, Escape-to-close, and keyboard support,
+  distinct from the gallery's carousel lightbox. Loaded only on pages whose body
+  contains an image. Styles live alongside the gallery lightbox in
+  `sass/_gallery.sass`.
+
+### Changed
+
+- Styled Markdown prose in `sass/_content.sass`: consistent vertical spacing,
+  larger and more usable `h3`–`h6` sizes, left-accent blockquotes (scoped so the
+  GitHub alerts keep their own look), lightweight themed tables with zebra
+  striping (Markdown column alignment preserved), a themed horizontal rule, and
+  size-constrained, centred inline images.
+
 ## [1.1.1] - 2026-09-13
 
 ### Changed

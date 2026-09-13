@@ -59,6 +59,12 @@
      third-party scripts below only on pages that actually need them. #}
   {% set content = page?.content or section?.content or "" %}
 
+  {# Single-image lightbox for inline prose images. Loaded only when the page
+     body contains an image. #}
+  {% if '<img' in content %}
+  <script defer src="{{ get_url(path='js/inline-image.js') }}"></script>
+  {% endif %}
+
   {# Copy-link buttons on heading anchors. Loaded only when the page has an
      inserted heading anchor (class="zola-anchor"). #}
   {% if 'class="zola-anchor"' in content %}

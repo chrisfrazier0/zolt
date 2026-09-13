@@ -14,9 +14,9 @@ generate_feeds = true
 feed_filenames = ["atom.xml", "rss.xml"]
 
 taxonomies = [
-    { name = "tags", paginate_by = 3, paginate_path = "" },
+    { name = "tags", paginate_by = 4, paginate_path = "" },
     { name = "series", feed = true },
-    { name = "location", paginate_by = 3, paginate_path = "" },
+    { name = "location", paginate_by = 4, paginate_path = "" },
 ]
 
 [search]

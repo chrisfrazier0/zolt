@@ -10,6 +10,99 @@ $alert-warning: var(--alert-warning)
 $alert-caution: var(--alert-caution)
 
 .content
+  // Prose rhythm: comfortable, consistent vertical spacing.
+  > :first-child
+    margin-top: 0
+  > :last-child
+    margin-bottom: 0
+
+  p, ul, ol, blockquote, table, pre, figure
+    margin: 1rem 0
+
+  li > ul, li > ol
+    margin: 0.35rem 0
+
+  li + li
+    margin-top: 0.35rem
+
+  // Headings: clear hierarchy with usable smaller levels.
+  h1, h2, h3, h4, h5, h6
+    line-height: 1.25
+    scroll-margin-top: 2rem
+
+  h1, h2, h3
+    margin: 2rem 0 1rem
+
+  h4, h5, h6
+    margin: 1.75rem 0 0.75rem
+
+  h1
+    font-size: 2rem
+  h2
+    font-size: 1.6rem
+    padding-bottom: 0.3rem
+    border-bottom: 1px solid $border-subtle
+  h3
+    font-size: 1.3rem
+  h4
+    font-size: 1.1rem
+  h5, h6
+    font-size: 1rem
+    color: $muted
+
+  // Blockquotes.
+  blockquote:not([class*="markdown-alert-"])
+    padding: 0.25rem 0 0.25rem 1rem
+    border-left: 0.25rem solid $border
+    color: $muted
+
+    > :first-child
+      margin-top: 0
+    > :last-child
+      margin-bottom: 0
+
+    blockquote
+      margin: 0.75rem 0
+
+  // Tables: lightweight, themed.
+  table
+    width: 100%
+    border-collapse: collapse
+    font-size: 0.95rem
+
+  th, td
+    padding: 0.5rem 0.75rem
+    border: 1px solid $border
+    text-align: left
+
+  thead th
+    background: $surface
+    font-weight: 600
+
+  tbody tr:nth-child(even)
+    background: color-mix(in srgb, var(--fg) 3%, transparent)
+
+  // Horizontal rule.
+  hr
+    height: 1px
+    margin: 2rem 0
+    border: 0
+    background: $border
+
+  // Inline prose images.
+  p > img, figure > img
+    display: block
+    max-width: 100%
+    max-height: 24rem
+    width: auto
+    height: auto
+    margin: 1.5rem auto
+    border-radius: 4px
+
+  .img-zoom
+    cursor: zoom-in
+    -webkit-tap-highlight-color: transparent
+
   // GitHub alerts: blockquote.markdown-alert-*
   [class*="markdown-alert-"]
     margin: 1.5rem 0
