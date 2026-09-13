@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Declare inline galleries as a single `extra.galleries` array of tables in front
+  matter instead of repeated `[[extra.galleries]]` headers. The parsed data is
+  identical, but the flatter form matches how Sveltia CMS serializes the field
+  and avoids a spurious markdown link-check warning on the `[[...]]` syntax.
+
 ## [1.1.0] - 2026-09-12
 
 ### Added

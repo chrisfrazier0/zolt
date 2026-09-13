@@ -5,11 +5,11 @@
    gallery to appear, passing the whole list, the name to render and the
    colocated base path:
 
-     [[extra.galleries]]
-     name = "harbor"
-     images = [
-       { src = "harbor-1.svg", alt = "Boats at dusk", caption = "Golden hour." },
-       { src = "harbor-2.svg", alt = "Empty pier" },
+     galleries = [
+       { name = "harbor", images = [
+         { src = "harbor-1.svg", alt = "Boats at dusk", caption = "Golden hour." },
+         { src = "harbor-2.svg", alt = "Empty pier" },
+       ] },
      ]
 
      {{ <gallery galleries={page.extra.galleries} name="harbor" base_path={page.colocated_path} /> }}

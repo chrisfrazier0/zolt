@@ -8,23 +8,19 @@ tags = ["travel", "photography"]
 [extra]
 hero_image = "article/hero/coast.svg"
 hero_alt = "Coastal banner"
-
-[[extra.galleries]]
-name = "harbor"
-images = [
-    { src = "harbor-1.svg", alt = "Boats at the harbour", caption = "The fleet at first light." },
-    { src = "harbor-2.svg", alt = "The empty pier", caption = "Before the crowds arrive." },
-]
-
-[[extra.galleries]]
-name = "market"
-images = [
-    { src = "market-1.svg", alt = "Market stall of fruit", caption = "Crates of citrus." },
-    { src = "market-2.svg", alt = "Fresh bread", caption = "Still warm from the oven." },
-    { src = "market-3.svg", alt = "Cut flowers" },
-    { src = "market-4.svg", alt = "Baskets of spices", caption = "Colour by the kilo." },
-    { src = "market-5.svg", alt = "The fishmonger" },
-    { src = "market-6.svg", alt = "Cheese counter", caption = "A wall of wheels." },
+galleries = [
+    { name = "harbor", images = [
+        { src = "harbor-1.svg", alt = "Boats at the harbour", caption = "The fleet at first light." },
+        { src = "harbor-2.svg", alt = "The empty pier", caption = "Before the crowds arrive." },
+    ] },
+    { name = "market", images = [
+        { src = "market-1.svg", alt = "Market stall of fruit", caption = "Crates of citrus." },
+        { src = "market-2.svg", alt = "Fresh bread", caption = "Still warm from the oven." },
+        { src = "market-3.svg", alt = "Cut flowers" },
+        { src = "market-4.svg", alt = "Baskets of spices", caption = "Colour by the kilo." },
+        { src = "market-5.svg", alt = "The fishmonger" },
+        { src = "market-6.svg", alt = "Cheese counter", caption = "A wall of wheels." },
+    ] },
 ]
 +++
 
