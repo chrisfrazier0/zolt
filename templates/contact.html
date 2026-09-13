@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Contact &middot; {{ config.title }}{% endblock title %}
+
+{% block head %}
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script defer src="{{ get_url(path='js/contact.js') }}"></script>
+{% if 'class="zola-anchor"' not in (section?.content or "") %}
+<script defer src="{{ get_url(path='js/anchor-copy.js') }}"></script>
+{% endif %}
+{% endblock head %}
+
+{% block content %}
+<h1>Contact<a class="zola-anchor zola-anchor--title" href="{{ section.permalink }}" aria-label="Copy link to this page" title="Copy link to page">{%- include "partials/copy_link_icon.html" -%}</a></h1>
+<div class="content">{{ section.content | safe }}</div>
+
+<noscript>
+  <p class="contact-noscript">This form needs JavaScript for spam protection.
+    Please enable it, or email us directly.</p>
+</noscript>
+
+<form id="contact-form" class="contact-form" method="post" action="/api/contact" novalidate>
+  <p class="contact-form__field">
+    <label for="cf-name">Name</label>
+    <input type="text" id="cf-name" name="name" maxlength="100" autocomplete="name"
+      required aria-required="true" aria-describedby="cf-name-error">
+    <span class="contact-form__error" id="cf-name-error" role="alert"></span>
+  </p>
+
+  <p class="contact-form__field">
+    <label for="cf-email">Email</label>
+    <input type="email" id="cf-email" name="email" maxlength="200" autocomplete="email"
+      required aria-required="true" aria-describedby="cf-email-error">
+    <span class="contact-form__error" id="cf-email-error" role="alert"></span>
+  </p>
+
+  <p class="contact-form__field">
+    <label for="cf-message">Message</label>
+    <textarea id="cf-message" name="message" rows="6" maxlength="5000"
+      required aria-required="true" aria-describedby="cf-message-error"></textarea>
+    <span class="contact-form__error" id="cf-message-error" role="alert"></span>
+  </p>
+
+  {# Honeypot: hidden from users + assistive tech; bots that fill it are dropped. #}
+  <div class="contact-form__hp" aria-hidden="true">
+    <label for="cf-company">Company</label>
+    <input type="text" id="cf-company" name="company" tabindex="-1" autocomplete="off">
+  </div>
+
+  <div class="cf-turnstile" data-sitekey="{{ config.extra.contact.turnstile_site_key }}"></div>
+
+  <button type="submit" class="contact-form__submit">Send message</button>
+
+  <p class="contact-form__status" id="cf-status" role="status" aria-live="polite"></p>
+</form>
+{% endblock content %}

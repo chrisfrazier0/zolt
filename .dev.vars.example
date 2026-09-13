@@ -1,0 +1,12 @@
+# Local secrets for `wrangler dev` (read automatically). Copy this file to
+# `.dev.vars` (gitignored) and adjust as needed.
+#
+# The defaults below use Cloudflare's always-pass Turnstile TEST secret, which
+# pairs with the test site key that `just dev` injects into the local build.
+# See docs/README.md -> "Local development" for the full flow.
+TURNSTILE_SECRET_KEY=1x0000000000000000000000000000000AA
+
+# Resend API key. A dummy value lets you exercise the whole flow except the
+# actual email send (the submission is still stored with email_status='pending').
+# Use a real key if you want the email to go out locally too.
+RESEND_API_KEY=re_dummy_local_key

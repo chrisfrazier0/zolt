@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- A **Contact** page (`/contact/`) with an accessible form (name, email, message)
+  backed by a TypeScript Cloudflare Worker at `POST /api/contact`. Submissions are
+  validated with Cloudflare Turnstile, protected by a honeypot field and per-IP
+  rate limiting, stored in a D1 database, and emailed to the site owner via Resend.
+  Setup is documented in `docs/README.md`.
 - A "Typography & Markdown" example article that showcases the everyday Markdown
   formatting the theme renders on a single page — headings, text styles, lists
   (including task lists), blockquotes and GitHub-style alerts, links, an inline

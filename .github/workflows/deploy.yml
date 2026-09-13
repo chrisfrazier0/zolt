@@ -7,11 +7,14 @@ on:
       - "content/**"
       - "sass/**"
       - "scripts/**"
+      - "worker/**"
+      - "migrations/**"
       - "static/**"
       - "templates/**"
       - "justfile"
       - "package.json"
       - "package-lock.json"
+      - "tsconfig.json"
       - "wrangler.toml"
       - "zola.toml"
   workflow_dispatch:
@@ -47,6 +50,13 @@ jobs:
 
       - name: Build
         run: just build
+
+      - name: Apply D1 migrations
+        uses: cloudflare/wrangler-action@v4
+        with:
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: d1 migrations apply zolt-contact --remote
 
       - name: Deploy to Cloufdlare
         uses: cloudflare/wrangler-action@v4

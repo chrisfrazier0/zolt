@@ -1,0 +1,97 @@
+// Contact form
+.contact-form
+  display: flex
+  flex-direction: column
+  gap: 1rem
+  margin-block: 1.5rem
+
+  &__field
+    display: flex
+    flex-direction: column
+    gap: 0.35rem
+    margin: 0
+
+  label
+    font-weight: 600
+    font-size: 0.95rem
+
+  // Scoped to the field wrapper so text-like inputs match even after minify_html
+  // strips the default type="text" attribute.
+  &__field input, &__field textarea
+    width: 100%
+    padding: 0.75rem 1rem
+    font: inherit
+    color: inherit
+    background: $surface
+    border: 1px solid $border-input
+    border-radius: 0.5rem
+    appearance: none
+    -webkit-appearance: none
+    transition: border-color 0.15s ease, box-shadow 0.15s ease
+
+    &::placeholder
+      color: $muted
+
+    &:focus
+      outline: none
+      border-color: $accent
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent)
+
+  &__field textarea
+    resize: vertical
+    min-height: 8rem
+
+  &__error
+    color: #e5484d
+    font-size: 0.85rem
+
+    // Collapse entirely until an error message is set, so empty spans don't
+    // reserve space or add a flex gap row.
+    &:empty
+      display: none
+
+  // Tighten the space before the submit button by offsetting the form's flex
+  // gap (the widget renders with its own trailing whitespace).
+  .cf-turnstile
+    margin-bottom: -0.5rem
+
+  &__submit
+    align-self: flex-start
+    padding: 0.65rem 1.25rem
+    font: inherit
+    font-weight: 600
+    color: $on-accent
+    background: $accent
+    border: none
+    border-radius: 0.5rem
+    cursor: pointer
+    transition: opacity 0.15s ease
+
+    &:hover
+      opacity: 0.9
+
+    &:disabled
+      background: $disabled
+      cursor: not-allowed
+
+  &__status
+    margin: 0
+    color: $muted
+
+    &.is-success
+      color: #2f9e44
+
+    &.is-error
+      color: #e5484d
+
+  // Honeypot: visually and functionally hidden, off-screen.
+  &__hp
+    position: absolute
+    left: -9999px
+    width: 1px
+    height: 1px
+    overflow: hidden
+
+.contact-noscript
+  color: $muted
+  font-size: 0.875rem

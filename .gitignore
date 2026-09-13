@@ -92,6 +92,10 @@ Sessionx.vim
 # .env
 *.local
 
+# Wrangler
+.wrangler/
+.dev.vars
+
 # Runtime data
 pids
 *.pid
@@ -170,4 +174,3 @@ jspm_packages/
 .buildlog/
 .svn/
 migrate_working_dir/
-.wrangler/
