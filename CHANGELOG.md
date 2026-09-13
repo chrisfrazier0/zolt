@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-09-13
+
 ### Changed
 
 - Declare inline galleries as a single `extra.galleries` array of tables in front
@@ -134,6 +136,7 @@ Initial release.
   esbuild), `check` (Zola link validation), and `fmt` / `fmt-check` (Prettier via
   `npx`, no committed `package.json`).
 
-[Unreleased]: https://github.com/chrisfrazier0/zolt/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/chrisfrazier0/zolt/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/chrisfrazier0/zolt/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/chrisfrazier0/zolt/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/chrisfrazier0/zolt/releases/tag/v1.0.0
