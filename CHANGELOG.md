@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-09-13
+
 ### Added
 
 - A **Contact** page (`/contact/`) with an accessible form (name, email, message)
@@ -163,7 +165,8 @@ Initial release.
   esbuild), `check` (Zola link validation), and `fmt` / `fmt-check` (Prettier via
   `npx`, no committed `package.json`).
 
-[Unreleased]: https://github.com/chrisfrazier0/zolt/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/chrisfrazier0/zolt/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/chrisfrazier0/zolt/compare/v1.1.1...v1.2.0
 [1.1.1]: https://github.com/chrisfrazier0/zolt/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/chrisfrazier0/zolt/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/chrisfrazier0/zolt/releases/tag/v1.0.0
